@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #6
+        </title>
+        <style>
+            .title{
+                font-size: 50px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin: 5px;
+            }
+            .main-button{
+                font-size: 24px;     /* Bigger text */
+                padding: 10px 25px;  /* More space inside the button */
+                margin: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body> 
+        <p class="title">
+            ROCK PAPER SCISSORS!!!
+        </p>
+        <p id="score">
+            win: 0   lose: 0   tie: 0
+        </p>
+        <button class="main-button" title="Are you sure?" onclick="play(1)">
+            rock
+        </button>
+        <button class="main-button" title="Maybe this is the one" onclick="play(2)">
+            paper
+        </button>
+        <button class="main-button" title="Is this your lucky day?" onclick = "play(3)">
+            scissors
+        </button>
+        <script>
+            score = {
+                win: 0,
+                lose: 0,
+                tie: 0
+            }
+            com = Math.floor(Math.random()*3)+1
+            function cheat(com){
+                if(com == 1){
+                    com_choice = "rock"
+                }
+                else if(com == 2){
+                    com_choice = "paper"
+                }
+                else if(com == 3){
+                    com_choice = "scissors"
+                }
+                console.log(`I am going to play ${com_choice}`)
+            }
+            cheat(com);
+            function play(x){
+                if(x==com){
+                    alert("It's a tie!!!")
+                    score.tie += 1
+                    //console.log(score.tie) for debugging
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                    document.getElementById("score").innerText =  `win: ${score.win}   lose: ${score.lose}   tie: ${score.tie}`;
+                }
+                else if(x-com == 1 || (x==1 && com == 3)){
+                    alert("You win!!!")
+                    score.win +=1
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                    document.getElementById("score").innerText =  `win: ${score.win}   lose: ${score.lose}   tie: ${score.tie}`;
+                }
+                else{
+                    alert("You lose HAHAHAHAZHHAHAHH")
+                    score.lose +=1
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                    document.getElementById("score").innerText =  `win: ${score.win}   lose: ${score.lose}   tie: ${score.tie}`;
+                }
+            }
+        </script>
+    </body>
+</html>

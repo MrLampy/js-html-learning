@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>
+            code #3
+        </title> 
+        <style>
+            .love-button{
+                background-color: pink;
+                color: darkred;
+                border-color: red;
+            }
+        </style>
+    </header>
+    
+    <body>
+        <button class = "love-button" onclick = lovefunction()>
+            hi!
+        </button>
+        <p id="love-count">
+        </p>
+
+        <script>
+            //love initially start with -1 so when first click it's gonna be 0
+            let love = -1;
+            let firstclick = 0;
+
+            function lovefunction(){
+                love++
+                if(firstclick == 0){
+                    alert("Oh hi!!!");
+                    firstclick++;
+                }
+                //find the <p> with this id and change its content
+                document.getElementById("love-count").textContent = "Love: " + love;
+            }
+        </script>
+    </body>
+</html>

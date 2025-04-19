@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>code #10</title>
+        <style>
+            .title{
+                font-size: 30px;
+                font-family: "Comic Sans MS", cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="title">cost calculation</p>
+        <input placeholder="cost of order" id="user_input" onkeydown="typing()">
+        <button onclick="calculate()">submit</button>
+        <p id="show"></p>
+        <script>
+            function calculate(){
+                user_input = document.getElementById("user_input").value;
+                user_input = Number(user_input);
+
+                cost = user_input*100 //always remind that money can be glitch in js so convert to pennies first
+                if(user_input>=100){
+                    document.getElementById("show").innerText = `Your order is ${(cost/100)} dollars`
+                    alert("Free Shipping!!!");
+                }
+                else if(user_input<0){
+                    alert("Don't be tricky you sucker!!!")
+                }
+                else if(user_input == 0){
+                    alert("No money no shopping")
+                }
+                else{
+                    document.getElementById("show").innerText = `You order is ${((cost+1000)/100)} dollars, cost include shipping`
+                }
+            }
+            function typing(){
+                console.log(`I am typing ${event.key}`)
+                    if(event.key === "Enter"){
+                        calculate();
+                    }
+            }
+        </script>
+    </body>
+</html>

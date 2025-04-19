@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #4
+        </title>
+        <style>
+            .Cart{
+                font-size: 24px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p id = "0101" class = "Cart">
+            Cart: 0
+        </p>
+        <button onclick = "add_socks();">
+            add socks
+        </button>
+        <button onclick = "add_pants();">
+            add pants
+        </button>
+        
+        <!-- new line (2 times)-->
+        <br>
+        <br>
+
+        <button onclick = "remove_socks()">
+            remove socks
+        </button>
+        <button onclick = "remove_pants()">
+            remove pants
+        </button>
+
+        <script>
+            let socks = 0
+            let pants = 0
+            function add_socks(){
+                socks++;
+            }
+            function add_pants(){
+                pants++;
+            }
+            function update_cart(){
+                document.getElementById('0101').textContent = "Cart: " + (pants+socks);
+            }
+            function remove_socks(){
+                if (socks > 0){
+                    socks--;
+                }
+                else{
+                    alert("socks can't be below 0")
+                }
+            }
+            function remove_pants(){
+                if (pants > 0){
+                    pants--;
+                }
+                else {
+                    alert("pants can't be below 0")
+                }
+            }
+
+            document.addEventListener("click",(event) => {
+                if (event.target.tagName === "BUTTON"){
+                    update_cart()
+                }
+            })
+        </script>
+    </body>
+</html>

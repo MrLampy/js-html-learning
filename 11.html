@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>code #11</title>
+        <style>
+            .title{
+                font-size: 30px;
+                font-family: "Comic Sans MS", cursive;
+                margin: 5px;
+            }
+            .button{
+                cursor: pointer;
+            }
+            .hidden{
+                display: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="title">I am following you</p>
+        <input placeholder="write something...." oninput="play()">
+        <button class="button" onclick="swap()">swap</button>
+        <button class="hidden" onclick="go()"> go </button>
+        <p id="01"></p>
+        <script>
+            let mode = 1;
+            let mode_go = 1;
+            function play(){
+                if(mode == 1){
+                    document.getElementById("01").innerText = document.querySelector("input").value
+                }
+
+            }
+            function swap(){
+                mode = 1-mode;
+                document.getElementById("01").innerText = null;
+                if(mode == 0){
+                    document.querySelector(".hidden").style.display = "inline-block";
+                }
+                else{
+                    document.querySelector(".hidden").style.display = "none";
+                    play()
+                }
+            }
+            function go(){
+                mode_go = 1-mode_go;
+                if(mode_go == 0){
+                    document.getElementById("01").innerText = document.querySelector("input").value
+                    document.querySelector(".hidden").innerText = "r3s3t";
+                }
+                else{
+                    document.getElementById("01").innerText = null;
+                    document.querySelector(".hidden").innerText = "go";
+                }
+            }
+        </script>
+    </body>
+</html>

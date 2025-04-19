@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #5
+        </title>
+        <style>
+            .title{
+                font-size: 50px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .main-button{
+                font-size: 24px;     /* Bigger text */
+                padding: 10px 25px;  /* More space inside the button */
+                margin: 10px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body> 
+        <p class="title">
+            ROCK PAPER SCISSORS!!!
+        </p>
+        <button class="main-button" title="Are you sure?" onclick="play(1)">
+            rock
+        </button>
+        <button class="main-button" title="Maybe this is the one" onclick="play(2)">
+            paper
+        </button>
+        <button class="main-button" title="Is this your lucky day?" onclick = "play(3)">
+            scissors
+        </button>
+        <script>
+            com = Math.floor(Math.random()*3)+1
+            function cheat(com){
+                if(com == 1){
+                    com_choice = "rock"
+                }
+                else if(com == 2){
+                    com_choice = "paper"
+                }
+                else if(com == 3){
+                    com_choice = "scissors"
+                }
+                console.log(`I am going to play ${com_choice}`)
+            }
+            cheat(com);
+            function play(x){
+                if(x==com){
+                    alert("It's a tie!!!")
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                }
+                else if(x-com == 1 || (x==1 && com == 3)){
+                    alert("You win!!!")
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                }
+                else{
+                    alert("You lose HAHAHAHAZHHAHAHH")
+                    com = Math.floor(Math.random()*3)+1
+                    cheat(com)
+                }
+            }
+        </script>
+    </body>
+</html>
