@@ -6,10 +6,17 @@
             .title{
                 font-size: 30px;
                 font-family: "Comic Sans MS", cursive;
-                margin: 5px;
+                margin: 15px;
             }
             .button{
                 cursor: pointer;
+                background-color: red;
+                color: aliceblue;
+                border: none;
+                padding: 10px 15px;
+                font-weight: bold;
+                border-radius: 50px;
+                margin-left: 15px;
             }
             .hidden{
                 display: none;
@@ -18,6 +25,22 @@
         </style>
     </head>
     <body>
-        <script></script>
+        <p class="title">Subscribe to my channel!!!!</p>
+        <button class="button" onclick="transition()">Subscribe</button>
+        <script>
+            function transition(){
+                if(document.querySelector("button").innerText === "Subscribe"){
+                    document.querySelector("button").innerText = "Subscribed"
+                    document.querySelector("button").style.backgroundColor = "GhostWhite"
+                    document.querySelector("button").style.color = "black"
+
+                }
+                else{
+                    document.querySelector("button").innerText = "Subscribe";
+                    document.querySelector("button").style.color = ""
+                    document.querySelector("button").style.backgroundColor = "";
+                }
+            }
+        </script>
     </body>
 </html>
