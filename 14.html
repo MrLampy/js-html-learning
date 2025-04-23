@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<div>
+    <head>
+        <title>
+            code #14
+        </title>
+        <style></style>
+    </head>
+    <body>
+        <p style="font-size: 50px;
+                font-family: 'Comic Sans MS', cursive;
+                margin: 20px 0px;
+                font-weight: bold;">
+                My Todo List
+        </p>
+        <input placeholder="what to do today...." style="height: 20px;
+        width: 500px">
+        <button style="height: 25px;" onclick="add_todo()">Add</button>
+        <p id="01"></p>
+        <script>
+            my_list = [];
+            function add_todo(){
+                input = document.querySelector("input").value;
+                mylist.push(input);
+                document.getElementById("01").innerText = my_list;
+            }
+        </script>
+    </body>
+</div>

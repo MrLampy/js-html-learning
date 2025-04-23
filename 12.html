@@ -10,6 +10,7 @@
             }
             .button{
                 cursor: pointer;
+                font-family: Arial, Helvetica, sans-serif;
                 background-color: red;
                 color: aliceblue;
                 border: none;
@@ -18,8 +19,19 @@
                 border-radius: 50px;
                 margin-left: 15px;
             }
+            .user_input{
+                padding: 10px;
+                padding-right: 37px;
+            }
             .hidden{
                 display: none;
+                cursor: pointer;
+            }
+            .submit{
+                padding: 12px 10px;
+                background-color: forestgreen;
+                color: white;
+                border: none;
                 cursor: pointer;
             }
         </style>
@@ -27,11 +39,15 @@
     <body>
         <p class="title">Subscribe to my channel!!!!</p>
         <button class="button" onclick="transition()">Subscribe</button>
+        <div style="margin-bottom: 125px;"></div>
+        <input placeholder="your-number?" class="user_input">
+        <button class="submit" onmousedown="small()" onmouseup="reset()">submit</button>
+        <p id="01" style="opacity: 0.5; padding-left: 4px;"></p>
         <script>
             function transition(){
                 if(document.querySelector("button").innerText === "Subscribe"){
                     document.querySelector("button").innerText = "Subscribed"
-                    document.querySelector("button").style.backgroundColor = "GhostWhite"
+                    document.querySelector("button").style.backgroundColor = "rgb(240,240,240)"
                     document.querySelector("button").style.color = "black"
 
                 }
@@ -40,6 +56,14 @@
                     document.querySelector("button").style.color = ""
                     document.querySelector("button").style.backgroundColor = "";
                 }
+            }
+            function small(){
+                document.querySelector(".submit").style.padding = "10px 8px"
+                document.getElementById("01").innerHTML = "Gotcha Cutie~"
+            }
+            function reset(){
+                document.getElementById("01").innerHTML = ""
+                document.querySelector(".submit").style.padding = ""
             }
         </script>
     </body>
