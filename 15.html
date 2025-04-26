@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #15
+        </title>
+    </head>
+    <body>
+        <input onkeydown="handle(event)"><button onclick="submit()">submit</button>
+        <div></div>
+        <script>
+            input = ''
+            list = [];
+            function submit(){
+                input = document.querySelector("input").value
+                document.querySelector("input").value = ''
+                list = input.replace(/[{}\[\]\(\)]/g, '').split(",").map(item => Number(item.trim()));
+                min = list[0];
+                max = list[0];
+                for(let i = 1;i<list.length;i++){
+                    if(min>list[i]){
+                        min = list[i];
+                    }
+                    if(max<list[i]){
+                        max = list[i];
+                    }
+                }
+            }
+            function handle(event){
+                if(event.key === "Enter"){
+                    submit();
+                }
+            document.querySelector("div").innerHTML = `<p>min = ${min}</p><p>max = ${max}</p>`
+            }
+        </script>
+    </body>
+</html>
