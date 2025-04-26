@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<div>
+<html>
     <head>
         <title>
             code #14
         </title>
-        <style></style>
+        <style>
+            .todo-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 600px;
+                margin: 5px 0;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                word-break: break-word; /* just a backup */
+            }
+            
+            .todo-item span {
+                flex: 1; /* <span> will grow and wrap if needed */
+                overflow-wrap: break-word; /* makes text wrap nicely */
+                margin-right: 10px; /* small gap between text and button */
+            }
+            
+            .del_button {
+                flex-shrink: 0; /* button will NOT shrink */
+                white-space: nowrap; /* button text will NEVER wrap */
+                background-color: #ff4d4d;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        
+            .del_button:hover {
+                background-color: #ac3535;
+            }
+            
+        </style>
     </head>
     <body>
         <p style="font-size: 50px;
@@ -16,14 +50,37 @@
         <input placeholder="what to do today...." style="height: 20px;
         width: 500px">
         <button style="height: 25px;" onclick="add_todo()">Add</button>
-        <p id="01"></p>
+        <button style="height: 25px;" onclick="reset()">Reset</button>
+        <div id="01"></div>
         <script>
-            my_list = [];
+            let my_list = [];
+            let all_todos = ''
+            function render(){
+                for(let i = 0;i<my_list.length;i++){
+                    all_todos += `<div class="todo-item"><span>${my_list[i]}</span><button class="del_button" onclick="del('${i}');this.parentElement.remove();">Delete</button></div>`
+                    document.querySelector("input").value = ''
+                }
+                document.getElementById("01").innerHTML = all_todos;
+                all_todos = '';
+            }
+            
             function add_todo(){
                 input = document.querySelector("input").value;
-                mylist.push(input);
-                document.getElementById("01").innerText = my_list;
+                if(input.trim() != ""){
+                    my_list.push(input)
+                    render()
+                }
+            }
+            
+            function reset(){
+                my_list = [];
+                document.getElementById("01").innerHTML = '';
+            }
+
+            function del(x){
+                my_list.splice(x,1);
+                render();
             }
         </script>
     </body>
-</div>
+</html>
