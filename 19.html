@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code #19</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .control-group {
+      min-width: 200px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="range"],
+    input[type="color"],
+    select {
+      width: 100%;
+    }
+
+    #box {
+      background-color: steelblue;
+      color: white;
+      padding: 20px;
+      margin: 20px;
+      border: 2px solid black;
+      border-radius: 8px;
+      text-align: center;
+      width: 200px;
+      height: 100px;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎨 CSS Playground(Wrote by ChatGPT)</h2>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="padding">Padding</label>
+      <input type="range" id="padding" min="0" max="100" value="20">
+    </div>
+
+    <div class="control-group">
+      <label for="margin">Margin</label>
+      <input type="range" id="margin" min="0" max="100" value="20">
+    </div>
+
+    <div class="control-group">
+      <label for="border">Border Width</label>
+      <input type="range" id="border" min="0" max="20" value="2">
+    </div>
+
+    <div class="control-group">
+      <label for="borderRadius">Border Radius</label>
+      <input type="range" id="borderRadius" min="0" max="100" value="8">
+    </div>
+
+    <div class="control-group">
+      <label for="textAlign">Text Align</label>
+      <select id="textAlign">
+        <option value="left">Left</option>
+        <option value="center" selected>Center</option>
+        <option value="right">Right</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="bgColor">Background Color</label>
+      <input type="color" id="bgColor" value="#4682b4">
+    </div>
+
+    <div class="control-group">
+      <label for="fontSize">Font Size</label>
+      <input type="range" id="fontSize" min="10" max="50" value="16">
+    </div>
+
+    <div class="control-group">
+      <label for="width">Width</label>
+      <input type="range" id="width" min="100" max="500" value="200">
+    </div>
+
+    <div class="control-group">
+      <label for="height">Height</label>
+      <input type="range" id="height" min="50" max="300" value="100">
+    </div>
+  </div>
+
+  <div id="box">This is a live box</div>
+
+  <script>
+    const box = document.getElementById("box");
+
+    const updateStyles = () => {
+      box.style.padding = document.getElementById("padding").value + "px";
+      box.style.margin = document.getElementById("margin").value + "px";
+      box.style.borderWidth = document.getElementById("border").value + "px";
+      box.style.borderRadius = document.getElementById("borderRadius").value + "px";
+      box.style.textAlign = document.getElementById("textAlign").value;
+      box.style.backgroundColor = document.getElementById("bgColor").value;
+      box.style.fontSize = document.getElementById("fontSize").value + "px";
+      box.style.width = document.getElementById("width").value + "px";
+      box.style.height = document.getElementById("height").value + "px";
+    };
+
+    document.querySelectorAll("input, select").forEach(input => {
+      input.addEventListener("input", updateStyles);
+    });
+
+    updateStyles(); // Initialize
+  </script>
+
+</body>
+</html>
