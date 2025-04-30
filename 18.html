@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>code #18</title>
+        <style>
+            .item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 5px;
+                max-width: 500px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>
+            MeGa ToDO LiSt!
+        </h1>
+        <input placeholder="WhAt To dO.?.." onkeydown="enter(event)">
+        <input type="date" id="01">
+        <button onclick="submit()">submit</button>
+        <div></div>
+        
+        <script>
+            let list = [];
+            let long_str = '';
+
+            function render(){
+                for(let i = 0;i<list.length;i++){
+                    temp = `<div class="item"><p>${Object.keys(list[i])}</p><span>${Object.values(list[i])}</span><button onclick="del(${i})" id="02">Delete</button></div>`
+                    long_str += temp;
+                }
+                document.querySelector("div").innerHTML = long_str;
+                document.querySelector("input").value = ''
+                long_str = ''
+            }
+            
+            function submit(){
+                input = document.querySelector("input").value.trim()
+                date = document.getElementById("01").value;
+                if (input === '' || date === '') return;
+
+                list.push({[input]: date});
+                render();
+            }
+            
+            function enter(event){
+                if(event.key === "Enter"){
+                    submit();
+                }
+            }
+            function del(i){
+                list.splice(i,1)
+                render();
+            }
+        </script>
+    </body>
+</html>

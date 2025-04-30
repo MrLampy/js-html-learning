@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #16
+        </title>
+        <style></style>
+    </head>
+    <body>
+        <p style="font-size: 30px;
+                font-family: 'Comic Sans MS', cursive;
+                margin: 5px;">You type I count</p>
+        <input placeholder="Word Counting....." onkeydown="key_enter(event)"><button onclick = submit()>Submit</button>
+        <div></div>
+    </body>
+    <script>
+        let counts = {}
+        function submit(){
+            input = document.querySelector("input").value
+            input = input.replace(/[{}\[\]\(\)]/g, '').split(",")
+            for (let word of input) {
+                word = word.trim();
+                if (word.length > 0) {
+                    counts[word] = (counts[word] || 0) + 1;
+                }
+            }
+            document.querySelector("div").innerHTML = `${JSON.stringify(counts)}`
+            counts = {}
+        }
+        
+        function key_enter(event){
+            if(event.key === "Enter"){
+                submit();
+            }
+        }
+    </script>
+</html>
