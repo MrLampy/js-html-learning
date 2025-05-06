@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+        <title>
+            code #22
+        </title>
+        <style>
+            .title{
+                font-size: 40px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            .small{
+                font-family: "Comic Sans MS", cursive;
+                font-size: 43px;
+            }
+            .big{
+                font-size: 100px;
+                font-family: "Allura";
+            }
+        </style>
+    </head>
+    <body>
+        <pre class="title"><span class="big" id="setTime00">setTimeout</span>    vs    <span class="small" id="setInterval00">setInterval</span></pre>
+        <button style="padding: 12px;
+                        font-size: 14px;
+                        cursor: pointer;" onclick="swap()">swap</button>
+        <div></div>
+
+        <script>
+            let mode = 1;
+            let intervals = [];
+            let timeouts = [];
+        
+            function swap(){
+                intervals.forEach(id => clearInterval(id));
+                intervals = [];
+                timeouts.forEach(id => clearTimeout(id));
+                timeouts = [];
+        
+                if(mode === 1){
+                    document.getElementById("setTime00").className = "big"
+                    document.getElementById("setInterval00").className = "small"
+                    mode = 0;
+                    document.querySelector("div").innerHTML = "<p>Timeout is gonna trigger in 3</p>";
+        
+                    x = setTimeout(() => {
+                        document.querySelector("div").innerHTML = "<p>Timeout is gonna trigger in 2</p>";
+                    }, 1000);
+                    
+                    y = setTimeout(() => {
+                        document.querySelector("div").innerHTML = "<p>Timeout is gonna trigger in 1</p>";
+                    }, 2000)
+                    
+                    z = setTimeout(() => {
+                        document.querySelector("div").innerHTML = "<p>BOOOOOOOOOOOOOOOM!!!</p>";
+                    }, 3000)
+
+                    timeouts.push(x);
+                    timeouts.push(y);
+                    timeouts.push(z);
+                } else {
+                    document.getElementById("setTime00").className = "small"
+                    document.getElementById("setInterval00").className = "big"
+                    mode = 1;
+        
+                    let step = 3;
+                    document.querySelector("div").innerHTML = "<p>Interval is gonna trigger in 3</p>";
+        
+                    const intervalId = setInterval(() => {
+                        if (step === 3) {
+                            document.querySelector("div").innerHTML = "<p>Interval is gonna trigger in 2</p>";
+                        } else if (step === 2) {
+                            document.querySelector("div").innerHTML = "<p>Interval is gonna trigger in 1</p>";
+                        } else if (step === 1) {
+                            document.querySelector("div").innerHTML = "<p>Chicken Jockey Teehee~</p>";
+                        } else {
+                            document.querySelector("div").innerHTML = "<p>Interval is gonna trigger in 3</p>";
+                        }
+        
+                        step--;
+                        if (step < 0) step = 3;
+                    }, 1000);
+        
+                    intervals.push(intervalId);
+                }
+            }
+        
+            swap();
+        </script>
+        
+    </body>
+</html>
