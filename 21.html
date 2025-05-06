@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #21
+        </title>
+        <style></style>
+    </head>
+    <body>
+        <button onclick="unique()">la la lava</button>
+        <script>
+            function unique(){
+                let list = ['la','lava','chick','chick','chicken','la','lava']
+                let temp = '';
+                for(let j = 0; j<list.length;j++){
+                    temp = list[j];
+                    for(let i = j+1; i<list.length;i++){
+                        if(temp === list[i]){
+                            list.splice(i,1);
+                            i--;
+                        }
+                    }
+                }
+                console.log(list);
+            }
+        </script>
+    </body>
+</html>

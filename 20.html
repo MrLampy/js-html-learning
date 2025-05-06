@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            code #20
+        </title>
+        <style>
+            .user-input{
+                width: 100%;
+                max-width: 600px;
+                padding-right: 300px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+            input[type="text"] {
+                width: 100%;
+                max-width: 500px;
+              }
+        </style>
+    </head>
+    <body>
+        <input placeholder="give me number to FIZZBUZZ!!!" onkeydown="enter(event)" class="user-input">
+        <div></div>
+        
+        <script>
+            let long_str = '';
+            function enter(event){
+                if(event.key === "Enter"){
+                    print_num();
+                }
+            }
+            function print_num(){
+                let num = document.querySelector("input").value.trim()
+                for(let i = 1;i<=Number(num);i++){
+                    if(i%3 == 0 && i%5 == 0){
+                        long_str += `<p>FIZZBUZZ!!!!!</p>`
+                    }
+                    else if(i%3 == 0){
+                        long_str += `<p>FIZZ!!</p>`
+                    }
+                    else if(i%5 == 0){
+                        long_str += `<p>BUZZ!!!</p>`
+                    }
+                    else{
+                        long_str += `<p>${i}</p>`
+                    }
+                }
+                document.querySelector("div").innerHTML = long_str;
+                document.querySelector("input").value = "";
+                long_str = '';
+            }
+        </script>
+    </body>
+</html>
