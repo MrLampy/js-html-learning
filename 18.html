@@ -14,6 +14,31 @@
                 border-radius: 5px;
                 max-width: 500px;
             }
+            .del-button{
+                padding: 10px;
+                background-color: darkred;
+                color: white;
+                border-radius: 5px;
+                border: none;
+                font-size: 15px;
+                cursor: pointer;
+            }
+            .submit-button{
+                padding: 10px;
+                background-color: green;
+                color: white;
+                border-radius: 5px;
+                border: none;
+                font-size: 15px;
+                cursor: pointer;
+                position: relative;
+                top: 1px;
+            }
+            .todo-text {
+                word-wrap: break-word;   /* Break long words */
+                white-space: normal;     /* Allow wrapping */
+                max-width: 60%;          /* Prevent taking full width */
+              }
         </style>
     </head>
     <body>
@@ -21,9 +46,9 @@
         <h1>
             MeGa ToDO LiSt!
         </h1>
-        <input placeholder="WhAt To dO.?.." onkeydown="enter(event)">
-        <input type="date" id="01">
-        <button onclick="submit()">submit</button>
+        <input placeholder="WhAt To dO.?.." style="padding: 10px;" onkeydown="enter(event)">
+        <input type="date" id="01" style="padding: 9px; position: relative; top: 2px;">
+        <button onclick="submit()" class="submit-button">submit</button>
         <div></div>
         
         <script>
@@ -32,7 +57,7 @@
 
             function render(){
                 for(let i = 0;i<list.length;i++){
-                    temp = `<div class="item"><p>${Object.keys(list[i])}</p><span>${Object.values(list[i])}</span><button onclick="del(${i})" id="02">Delete</button></div>`
+                    temp = `<div class="item"><p class="todo-text">${Object.keys(list[i])}</p><span>${Object.values(list[i])}</span><button class="del-button" onclick="del(${i})" id="02">Delete</button></div>`
                     long_str += temp;
                 }
                 document.querySelector("div").innerHTML = long_str;
