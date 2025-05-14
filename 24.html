@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="css_href/green_pixel.css">
+        <title>
+            code #24
+        </title>
+        <style>
+            .button-loading{
+                visibility: hidden;
+                height: 0;
+                overflow: hidden;
+                display: inline-block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p style="font-size: 30px">Hello</p>
+        <button id = "01" onclick="play(id)">this is a button</button><br>
+        <button id = "02" onclick="play(id)" style="margin-top: 10px">this is a button</button><br>
+        <button id = "03" onclick="play(id)" style="margin-top: 10px">this is a button</button>
+        <script>
+            let loads = ["Load.","Load..","Load...","Load...."];
+            
+            function play(x){
+                let index = 1;
+                let count = 0;
+                if(document.getElementById(x).dataset.active === "true") return;
+                document.getElementById(x).innerText = "Load."
+                document.getElementById(x).dataset.active = "true";
+                let interval01 = setInterval(()=>{
+                    document.getElementById(x).innerText = loads[index];
+                    count++;
+                    if(count < 8){
+                        if(index < 3){
+                            index++;
+                        }
+                        else{
+                            index = 0;
+                        }
+                    }
+                    else{
+                        clearInterval(interval01);
+                        document.getElementById(x).innerText = "The button was clicked";
+                    }
+                },700);
+            }
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+        <title> code #23</title>
+        <style>
+            .title{
+                font-size: 50px;
+                font-family: "Allura";
+                margin-top: 10px;
+                margin-bottom: 0px;
+                margin-left: 24px
+            }
+            button img{
+                width: 100px;
+                height: 100px;
+                object-fit: cover;  /* ensures image fills the box nicely */
+                display: block;
+            }
+            .choice-button{
+                margin-top: 20px;
+                align-items: center;
+                padding: 40px;
+                border: none;
+                cursor: pointer;
+                border-radius: 200px;
+                transition: transform 0.2s ease;
+            }
+            .choice-button:hover {
+                transform: scale(1.1) rotate(2deg);
+                background-color: rgb(191, 229, 216);
+            }
+            .button-auto{
+                padding: 10px;
+                border-radius: 20px;
+                border: None;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+            .button-auto:hover{
+                background-color: lightgray;
+                transform: scale(1.05);
+            }
+            .button-auto-play{
+                background-color: red;
+                color: white;
+            }
+            .button-auto-play:hover{
+                background-color: rgb(213, 0, 0);
+                transform: scale(1.05);
+            }
+        </style>
+    </head>
+    <body>
+        <pre class="title">ROCK   PAPER   SCISSORS!!!!</pre>
+        <button class="choice-button" style="margin-left: 20px" onclick="play(1)"><img src="image-used/rock.png" style="transform: scale(1.2)"></button>
+        <button class="choice-button" style="margin: 20px 100px" onclick="play(2)"><img src="image-used/paper.png"></button>
+        <button class="choice-button" onclick="play(3)"><img src="image-used/scissors.png"></button>
+        <br><button class="button-auto" style="margin: 20px 30px" onclick="auto()">Auto-play</button>
+        <div style="margin-left: 20px"><p id="01"></p></div>
+        <div style="margin-left: 20px"><p id="02"></p></div>
+        <div style="margin-left: 20px"><p id="03"></p></div>
+
+        <script>
+            let is_auto = 0;
+            let ID;
+            function translate(com){
+                if(com == 1){
+                    return "Rock"
+                }
+                if(com == 2){
+                    return "Paper"
+                }
+                if(com == 3){
+                    return "Scissors"
+                }
+            }
+            
+            function play(x){
+                const com = Math.floor(Math.random() * 3) + 1;
+                const com_choice = translate(com);
+                const my_choice = translate(x);
+                let result;
+                document.getElementById("01").innerText = `You play ${my_choice}`
+                document.getElementById("02").innerText = `The computer plays ${com_choice}`
+                if(x-com == 1 || (x == 1 && com == 3)){
+                    result = "You Win!!!"
+                }
+                else if(x == com){
+                    result = "It's a tie"
+                }
+                else{
+                    result = "U LOSE!"
+                }
+                document.getElementById("03").innerText = `${result}`
+            }
+
+            function auto(){
+                const autoBtn = document.getElementsByClassName("button-auto")[0]
+                if(!is_auto){
+                    autoBtn.classList.add("button-auto-play");
+                    let auto_man = 0
+                    ID = setInterval(() =>{
+                        auto_man = Math.floor(Math.random() * 3) + 1
+                        play(auto_man)
+                    },1000);
+                    is_auto = 1;
+                }
+                else{
+                    autoBtn.classList.remove("button-auto-play");
+                    clearInterval(ID);
+                    is_auto = 0;
+                }
+            }
+        </script>
+    </body>
+</html>
