@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- This is made by Chat for me to learn how to change pages on Web -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>code #28</title>
+        <link rel="stylesheet" href="css_href/idk.css" />
+    </head>
+    <body>
+        <section style="text-align: center; margin: 0; padding: 0;">
+            <img 
+                src="https://pbs.twimg.com/media/FbP_nkjakAACyZc?format=jpg&name=4096x4096" 
+                alt="Beautiful Scene" 
+                style="width: 100%; max-width: 1000px; height: auto; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); scale: 80%; margin: -100px 0px;"
+            />
+            <p class="small" style="margin: 15px 0 5px 0;">A little Owl comes to greet you</p>
+            <button style="margin: 0;">Back</button>
+        </section>
+        <script>
+            const audio = new Audio('audio-used/oh-hi.mp3');
+            audio.preload = 'auto';
+            document.querySelector("button").addEventListener("click",()=>{
+                window.location.href = "27.html"
+            })
+            if (audio.readyState >= 1) {
+                audio.currentTime = 4.2;
+                audio.play();
+            }
+            else {
+                audio.addEventListener("loadedmetadata", () => {
+                audio.currentTime = 4.2;
+                audio.play();
+                });
+            }
+            setTimeout(()=>alert("Oh hi!!!"), 50)
+        </script>
+    </body>
+</html>
