@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {
+            box-sizing: border-box;
+            }
+            .container {
+                border: 10px solid black;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: flex-start;
+                gap : 20px;
+            }
+            .img-container {
+                width: 70%; height: auto; border : 10px solid blue;
+            }
+            .upper-title {
+                border: 10px solid black;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 120px;
+                text-align: center;
+            }
+            .card {
+                width: 330px; height: auto; border : 10px solid red;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .in-card-text {
+                width: 70%;
+                height: 150px;
+                margin: 7px auto;
+                text-align: center;
+                border: 10px solid green;
+                overflow: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="upper-title">
+            This is my learning
+        </div>
+        <div style = "margin : 20px 0px">
+            <input type="file" accept="image/*" style = "margin-bottom: 10px" id = "img-input">
+            <br>
+            <input type ="text" placeholder="Write description!!!" id = 'text-input'>
+            <button class="img-input-btn">submit</button>
+        </div>
+        
+        <div class = 'container' style = 'margin: 20px 0px'>
+            <div class = "card">
+                <img src = './image-used/rock.png' alt="A rock" class = 'img-container'>
+                <div class="in-card-text">Rock - Strong, stubborn, hits problems until they go away</div>
+            </div>
+            <div class = "card">
+                <img src = './image-used/rock.png' alt="A rock" class = 'img-container'>
+                <div class="in-card-text">Rock - Strong, stubborn, hits problems until they go away</div>
+            </div>
+            <div class = "card">
+                <img src = './image-used/rock.png' alt="A rock" class = 'img-container'>
+                <div class="in-card-text">Rock - Strong, stubborn, hits problems until they go away</div>
+            </div><div class = "card">
+                <img src = './image-used/rock.png' alt="A rock" class = 'img-container'>
+                <div class="in-card-text">Rock - Strong, stubborn, hits problems until they go away</div>
+            </div><div class = "card">
+                <img src = './image-used/rock.png' alt="A rock" class = 'img-container'>
+                <div class="in-card-text">Rock - Strong, stubborn, hits problems until they go away</div>
+            </div>
+        </div>
+        <script>
+            const pic = document.getElementById('img-input')
+            const description = document.getElementById('text-input')
+            document.querySelector('.img-input-btn').addEventListener('click', async () => {
+                if  (pic.files.length === 0 || description.value.trim() === "") {
+                    alert('Fill both inputs!!!')
+                    return
+                }
+                const formData = new FormData();
+                formData.append('image', pic.files[0]);
+                formData.append('description', description.value);
+                try {
+                    const res = await fetch('http://localhost:3000/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await res.json();
+                    alert("Uploaded!");
+                } catch (err) {
+                    console.error(err);
+                    alert('Error!');
+                }
+            });
+        </script>
+    </body>
+</html>

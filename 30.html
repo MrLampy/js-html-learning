@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html> 
+    <!-- Hmmm... quite fun this is just GPT generate I just want to know the logic behind dragging things in website -->
+    <head>
+        <title>code #30</title>
+        <style>
+            .draggable {
+                width: 120px;
+                height: 120px;
+                background: #48ff80;
+                border: 3px solid #00c651;
+                border-radius: 12px;
+                position: absolute; /* IMPORTANT */
+                cursor: grab;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                user-select: none; /* No text selection */
+            }
+
+            .draggable:active {
+                cursor: grabbing;
+            }
+
+            /* Just different colors for demo */
+            .box1 { top: 50px; left: 40px; }
+            .box2 { top: 200px; left: 200px; background: #4fe0ff; border-color: #009dc6; }
+        </style>
+    </head>
+    
+    <body>
+        <div class="draggable box1">Drag me</div>
+        <div class="draggable box2">Me too</div>
+    </body>
+    <script>
+        let active = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        document.querySelectorAll(".draggable").forEach(el => {
+            el.addEventListener("mousedown", e => {
+                active = el;
+                offsetX = e.clientX - el.offsetLeft;
+                offsetY = e.clientY - el.offsetTop;
+            });
+        });
+
+        document.addEventListener("mousemove", e => {
+            if (active) {
+                active.style.left = (e.clientX - offsetX) + "px";
+                active.style.top = (e.clientY - offsetY) + "px";
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            active = null; // drop it
+        });
+    </script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+       <title>code #29</title>
+    </head>
+    <link rel = "stylesheet" href = '/css_href/green_pixel.css' >
+    <body>
+        <p>
+            Choose your language
+        </p>
+        <label>
+            <input type="radio" name="lang" value="English">
+            <span id="lable-eng">English</span>
+        </label><br>
+
+        <label>
+            <input type="radio" name="lang" value="Thai">
+            <span id="lable-thai">Thai</span>
+        </label><br>
+
+        <label>
+            <input type="radio" name="lang" value="Spanish">
+            <span id="lable-spanish">Spanish</span>
+        </label><br>
+
+        <label>
+            <input type="radio" name="lang" value="Japanese">
+            <span id="lable-jp">Japanese</span>
+        </label><br><br>
+
+        <button class = 'subBtn'>Submit</button>
+        <script>
+            // Parse URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentLang = urlParams.get("lang");
+
+            // Text translations for each language
+            const translations = {
+                English: {
+                    title: "Choose your language",
+                    english: "English",
+                    thai: "Thai",
+                    spanish: "Spanish",
+                    japanese: "Japanese",
+                    submit: "Submit"
+                },
+                Thai: {
+                    title: "เลือกภาษาของคุณ",
+                    english: "อังกฤษ",
+                    thai: "ไทย",
+                    spanish: "สเปน",
+                    japanese: "ญี่ปุ่น",
+                    submit: "ยืนยัน"
+                },
+                Spanish: {
+                    title: "Elige tu idioma",
+                    english: "Inglés",
+                    thai: "Tailandés",
+                    spanish: "Español",
+                    japanese: "Japonés",
+                    submit: "Enviar"
+                },
+                Japanese: {
+                    title: "言語を選択してください",
+                    english: "英語",
+                    thai: "タイ語",
+                    spanish: "スペイン語",
+                    japanese: "日本語",
+                    submit: "決定"
+                }
+            };
+
+            document.querySelector('.subBtn').addEventListener("click", submitChoice)
+            document.querySelector('p').innerText = translations[currentLang].title
+            document.querySelector(".subBtn").innerText = translations[currentLang].submit;
+            if (!currentLang) currentLang = 'english'
+            if (currentLang && translations[currentLang]) {
+                const map = [
+                    ["lable-eng", "english"],
+                    ["lable-thai", "thai"],
+                    ["lable-spanish", "spanish"],
+                    ["lable-jp", "japanese"]
+                ];
+                map.forEach(([id, key]) => {
+                    document.getElementById(id).innerText = translations[currentLang][key];
+                });
+            }
+            function submitChoice() {
+                const selected = document.querySelector('input[name="lang"]:checked');
+                if (!selected) return
+                lang = selected.value
+                alert(`Changed to ${lang}`)
+                window.location.href = "?lang=" + lang;
+            }
+
+        </script>
+    </body>
+</html>

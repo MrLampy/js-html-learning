@@ -30,3 +30,36 @@ button:active {
   background-color: lime;
   color: black;
 }
+
+/* Remove default style */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  background-color: black;
+  border: 3px solid lime;
+
+  image-rendering: pixelated;
+  cursor: pointer;
+
+  /* No rounded corners → pixel look */
+  border-radius: 0px;
+
+  margin: 5px 10px;
+  vertical-align: middle;
+}
+
+/* Pixel selected effect */
+input[type="radio"]:checked {
+  background-color: lime;
+  box-shadow: inset 0 0 0 3px black; /* makes a pixel border inside */
+}
+
+/* Pressing */
+input[type="radio"]:active {
+  transform: scale(1.1);
+}
+
